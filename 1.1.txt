@@ -1,0 +1,202 @@
+1)	Power BI
+AIM:  Import the legacy data from different sources such as (Excel, SqlServer, Oracle etc.) and load in the target system.
+
+Importing Excel Data
+
+ 
+2)	NAÏVE BAYES ALGORITHM
+AIM: SHOW THE IMPLEMENTATION OF NAÏVE BAYES.
+BACKGROUND INFORMATION:
+In machine learning, naive Bayes classifiers are a family of simple probabilistic classifiers based on applying Bayes' theorem with strong (naive) independence assumptions between the features.
+Naive Bayes classifiers are highly scalable, requiring a number of parameters linear in the number of variables (features/predictors) in a learning problem. Maximum-likelihood training can be done by evaluating a closed-form expression, which takes linear time, rather than by expensive iterative approximation as used for many other types of classifiers.
+In the statistics and computer science literature, Naive Bayes models are known under a variety of names, including simple Bayes and independence Bayes. All these names reference the use of Bayes' theorem in the classifier's decision rule, but naive Bayes is not (necessarily) a Bayesian method.
+Naive Bayes is a simple technique for constructing classifiers: models that assign class labels to problem instances, represented as vectors of feature values, where the class labels are drawn from some finite set. It is not a single algorithm for training such classifiers, but a family of algorithms based on a common principle: all naive Bayes classifiers assume that the value of a particular feature is independent of the value of any other feature, given the class variable.
+
+SOURCE CODE AND OUTPUT
+> library(e1071) 
+It comes with several well-known datasets, which can be loaded in as ARFF files (Weka's default file format). We now load a sample dataset, the famous Iris dataset [1] and learn a Naïve Bayes classifier for it, using default parameters. First, let us take a look at the Iris dataset.
+Each instance of datasets contains four attributes:sepal length in cm, sepal width in cm, petal length in cm, and petal width in cm. The next picture shows each attribute plotted against the others, with the different classes in color.
+> library(e1071) 
+> pairs(iris[1:4], main = "Iris Data (red=setosa,green=versicolor,blue=virginica)", pch = 21, bg = c("red", "green", "blue")[unclass(iris$Species)])
+First of all, we need to specify which base we are going to use:
+> data(iris)
+> summary(iris)
+After that, we are ready to create a Naïve Bayes model to the dataset using the first 4 columns to predict the fifth. (Factor the target column by so: dataset$col <- factor(dataset$col) )
+> classifier<-naiveBayes(iris[,1:4], iris[,5]) 
+> table(predict(classifier, iris[,-5]), iris[,5])
+ 
+3)	DECISION TREE ALGORITHM
+AIM: SHOW THE IMPLEMENTATION OF DECISION TREE.
+BACKGROUND INFORMATION:
+Decision tree induction is the learning of decision trees from class- labeled training tuples. A decision tree is a ﬂowchart- like tree structure, where each internal node (non-leaf node) denotes a test on an attribute, each branch represents an outcome of the test, and each leaf node (or terminal node) holds a class label. The topmost node in a tree is the root node. Internal nodes are denoted by rectangles, and leaf nodes are denoted by ovals.
+This practical will show the implementation of decision three using package party, rpart&random forest
+Decision Trees with Package party
+This section shows how to build a decision for the iris dataset with the function ctree() in package party. Iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
+ 
+SOURCE CODE AND OUTPUT
+> str(iris)
+> set.seed(1234)
+> ind <- sample(2, nrow(iris), replace=TRUE, prob=c(0.7, 0.3))
+> trainData <- iris[ind==1,]
+> testData <- iris[ind==2,]
+> library(party) //for checking party package is installed or not
+> install.packages("party") //for installing party package
+> install.packages("partykit") //for installing partykit since ctree function is required further
+> myFormula <- Species ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width
+> iris_ctree <- c(myFormula, data=trainData)
+> # check the prediction
+> table(predict(iris_ctree), trainData$Species)
+> plot(iris_ctree)
+> plot(iris_ctree, type="simple")
+> # predict on test data
+> testPred <- predict(iris_ctree, newdata = testData)
+> table(testPred, testData$Species)
+
+4)	TIME SERIES ANALYSIS
+AIM: SHOW THE IMPLEMENTATION OF TIME SERIES ANALYSIS.
+BACKGROUND INFORMATION:
+A time series is a sequence of data points, typically consisting of successive measurements made over a time interval. Examples of time series are ocean tides, counts of sunspots. Time series are very frequently plotted via line charts. Time series are used in statistics, signal processing, pattern recognition, econometrics, mathematical finance, weather forecasting, intelligent transport and trajectory forecasting, earthquake prediction, electroencephalography, control engineering, astronomy, communications engineering, and largely in any domain of applied science and engineering which involves temporal measurements.
+Time series analysis comprises methods for analyzing time series data in order to extract meaningful statistics and other characteristics of the data. Time series forecasting is the use of a model to predict future values based on previously observed values. While regression analysis is often employed in such a way as to test theories that the current values of one or more independent time series affect the current value of another time series, this type of analysis of time series is not called "time series analysis", which focuses on comparing values of a single time series or multiple dependent time series at different points in time. Time series analysis can be applied to real-valued, continuous data, discrete numeric data, or discrete symbolic data.
+When information is transferred across time, often to specific points in time, the process is known as forecasting.
+ 
+SOURCE CODE AND OUTPUT
+> a <- ts(1:30, frequency=12, start=c(2011,3))
+> print(a)
+> str(a)
+> attributes(a)
+> plot(AirPassengers)
+> apts <- ts(AirPassengers, frequency=12)
+> f <- decompose(apts)
+> #seasonal figures
+> plot(AirPassengers)
+# Function decompose() is applied below to AirPassengers to break it into various components.
+> f$figure
+> plot(f$figure, type= "b", xaxt= "n ", xlab= " ")
+> monthNames <- months(ISOdate(2011,1:12,1))
+> axis(1, at=1:12, labels=monthNames, las=2)
+Time Series Forecasting
+Time series forecasting is to forecast future events based on historical data. One example is
+to predict the opening price of a stock based on its past performance. Two popular models for
+time series forecasting are autoregressive moving average (ARMA) and autoregressive integrated
+moving average (ARIMA).
+> fit <- arima(AirPassengers, order=c(1,0,0), list(order=c(2,1,0), period=12))
+> fore <- predict(fit, n.ahead=24)
+> # error bounds at 95% confidence level
+> U <- fore$pred + 2*fore$se
+> L <- fore$pred - 2*fore$se
+> ts.plot(AirPassengers, fore$pred, U, L, col=c(1,2,4,4), lty = c(1,1,2,2))
+> legend("topleft", c("Actual", "Forecast", "Error Bounds (95% Confidence)"), col=c(1,2,4), lty=c(1,1,2))
+
+ 
+5)	CLUSTERING ALGORITHM
+AIM: SHOW THE IMPLEMENTATION OF CLUSTERING ALGORITHM.
+BACKGROUND INFORMATION:
+Cluster analysis or clustering is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar (in some sense or another) to each other than to those in other groups (clusters). It is a main task of exploratory data mining, and a common technique for statistical data analysis
+k-means clustering is a method of vector quantization, originally from signal processing, that is popular for cluster analysis in data mining. k-means clustering aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean, serving as a prototype of the cluster.
+k-medoids clustering is a clustering algorithm related to the k-means algorithm and the medoid shift algorithm. Both the k-means and k-medoids algorithms are partitional (breaking the dataset up into groups) and both attempt to minimize the distance between points labeled to be in a cluster and a point designated as the center of that cluster. In contrast to the k-means algorithm, k-medoids chooses datapoints as centers (medoids or exemplars) and works with an arbitrary matrix of distances between datapoints.
+Hierarchical clustering involves creating clusters that have a predetermined ordering from top to bottom. For example, all files and folders on the hard disk are organized in a hierarchy. There are two types of hierarchical clustering, Divisive and Agglomerative.
+Divisive method
+In this method we assign all of the observations to a single cluster and then partition the cluster
+to two least similar clusters. Finally, we proceed recursively on each cluster until there is one cluster 
+for each observation.
+Agglomerative method
+In this method we assign each observation to its own cluster.
+Density-based clustering
+In density-based clustering, clusters are defined as areas of higher density than the remainder of the data set. Objects in these sparse areas - that are required to separate clusters - are usually considered to be noise and border points.
+ 
+SOURCE CODE AND OUTPUT
+> iris2 <- iris
+> iris2$Species <- NULL
+> (kmeans.result <- kmeans(iris2, 3))
+> table(iris$Species, kmeans.result$cluster)
+> plot(iris2[c("Sepal.Length", "Sepal.Width")], col = kmeans.result$cluster)
+> points(kmeans.result$centers[,c("Sepal.Length", "Sepal.Width")], col = 1:3, pch = 8, cex=2)
+K-medoids
+> library(fpc)
+> pamk.result <- pamk(iris2)
+> # number of clusters
+> pamk.result$nc[1]
+> # check clustering against actual species
+> table(pamk.result$pamobject$clustering, iris$Species)
+> layout(matrix(c(1,2),1,2)) # 2 graphs per page
+> plot(pamk.result$pamobject)
+> layout(matrix(1)) # change back to one graph per page
+> pamk.result <- pamk(iris2, 3)
+> table(pamk.result$pamobject$clustering,iris$Species)
+> layout(matrix(c(1,2),1,2)) # 2 graphs per page
+> plot(pamk.result$pamobject)
+> layout(matrix(1)) # change back to one graph per page
+Hierarchical
+> idx <- sample(1:dim(iris)[1], 40)
+> irisSample <- iris[idx,]
+> irisSample$Species <- NULL
+> hc <- hclust(dist(irisSample), method="ave")
+> plot(hc, hang = -1, labels=iris$Species[idx])
+> rect.hclust(hc, k=3)
+> groups <- cutree(hc, k=3)
+Density based 
+>iris2 <- iris[-5] # remove class tags
+> ds <- dbscan(iris2, eps=0.42, MinPts=5)
+> # compare clusters with original class labels
+> table(ds$cluster, iris$Species)
+> plot(ds, iris2)
+> plot(ds, iris2[c(1,4)])
+> plotcluster(iris2, ds$cluster)
+> # create a new dataset for labeling
+> set.seed(435)
+> idx <- sample(1:nrow(iris), 10)
+> newData <- iris[idx,-5]
+> newData <- newData + matrix(runif(10*4, min=0, max=0.2), nrow=10, ncol=4)
+> # label new data
+> myPred <- predict(ds, iris2, newData)
+> # plot result
+> plot(iris2[c(1,4)], col=1+ds$cluster)
+> points(newData[c(1,4)], pch="*", col=1+myPred, cex=3)
+> # check cluster labels
+> table(myPred, iris$Species[idx])
+
+6)	K-NEAREST NEIGHBOR
+AIM: SHOW THE IMPLEMENTATION OF K-NEAREST NEIGHBOR.
+BACKGROUND INFORMATION:
+The k-Nearest Neighbors algorithm (or k-NN for short) is a non-parametric method used for classification and regression. In both cases, the input consists of the k closest training examples in the feature space. The output depends on whether k-NN is used for classification or regression:
+•	In k-NN classification, the output is a class membership. An object is classified by a majority vote of its neighbors, with the object being assigned to the class most common among its k nearest neighbors (k is a positive integer, typically small). If k = 1, then the object is simply assigned to the class of that single nearest neighbor.
+•	In k-NN regression, the output is the property value for the object. This value is the average of the values of its k nearest neighbors.
+k-NN is a type of instance-based learning, or lazy learning, where the function is only approximated locally and all computation is deferred until classification. The k-NN algorithm is among the simplest of all machine learning algorithms.
+Both for classification and regression, it can be useful to assign weight to the contributions of the neighbors, so that the nearer neighbors contribute more to the average than the more distant ones. For example, a common weighting scheme consists in giving each neighbor a weight of 1/d, where d is the distance to the neighbor.
+The neighbors are taken from a set of objects for which the class (for k-NN classification) or the object property value (for k-NN regression) is known. This can be thought of as the training set for the algorithm, though no explicit training step is required.
+A shortcoming of the k-NN algorithm is that it is sensitive to the local structure of the data.
+ 
+SOURCE CODE AND OUTPUT
+> library(RWeka)
+It comes with several well-known datasets, which can be loaded in as ARFF files (Weka's default file format). We now load a sample dataset, the famous Iris dataset, and learn a kNN classifier for it, using default parameters:
+> iris <- read.arff(system.file("arff", "iris.arff", package = "RWeka"))
+> classifier <- IBk(class ~., data = iris)
+> summary(classifier)
+We will generate a kNN classifier, but we'll let RWeka automatically find the best value for k, between 1 and 20. We'll also use 10-fold cross validation to evaluate our classifier:
+> classifier <- IBk(class ~ ., data = iris, control = Weka_control(K = 20, X = TRUE))
+> evaluate_Weka_classifier(classifier, numFolds = 10)
+> classifier
+ 
+7)	ASSOCIATION ALGORITHM
+AIM: SHOW THE IMPLEMENTATION OF ASSOCIATION ALGORITHM.
+BACKGROUND INFORMATION:
+Association rule learning is a method for discovering interesting relations between variables in large databases. It is intended to identify strong rules discovered in databases using different measures of interestingness.
+Association rules are rules presenting association or correlation between itemsets. An association
+rule is in the form of A ) B, where A and B are two disjoint itemsets, referred to respectively
+as the lhs (left-hand side) and rhs (right-hand side) of the rule. 
+The three most widely-used measures for selecting interesting rules are support, confidence and lift. Support is the percentage of cases in the data that contains both A and B, con_dence is the percentage of cases containing
+A that also contain B, and lift is the ratio of con_dence to the percentage of cases containing B where P(A) is the percentage (or probability) of cases containing A.
+
+SOURCE CODE AND OUTPUT
+> str(Titanic)
+> df <- as.data.frame(Titanic) 
+> head(df)
+> titanic.raw <- NULL 
+> for(i in 1:4) {  titanic.raw <- cbind(titanic.raw, rep(as.character(df[,i]), df$Freq))  }
+> titanic.raw <- as.data.frame(titanic.raw) 
+> names(titanic.raw) <- names(df)[1:4]
+> dim(titanic.raw)
+> summary(titanic.raw)
+> str(titanic.raw) 
+> head(titanic.raw)
+> summary(titanic.raw)

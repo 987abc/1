@@ -1,0 +1,89 @@
+2)	NAÏVE BAYES ALGORITHM
+AIM: SHOW THE IMPLEMENTATION OF NAÏVE BAYES.
+BACKGROUND INFORMATION:
+In machine learning, naive Bayes classifiers are a family of simple probabilistic classifiers based on applying Bayes' theorem with strong (naive) independence assumptions between the features.
+Naive Bayes classifiers are highly scalable, requiring a number of parameters linear in the number of variables (features/predictors) in a learning problem. Maximum-likelihood training can be done by evaluating a closed-form expression, which takes linear time, rather than by expensive iterative approximation as used for many other types of classifiers.
+In the statistics and computer science literature, Naive Bayes models are known under a variety of names, including simple Bayes and independence Bayes. All these names reference the use of Bayes' theorem in the classifier's decision rule, but naive Bayes is not (necessarily) a Bayesian method.
+Naive Bayes is a simple technique for constructing classifiers: models that assign class labels to problem instances, represented as vectors of feature values, where the class labels are drawn from some finite set. It is not a single algorithm for training such classifiers, but a family of algorithms based on a common principle: all naive Bayes classifiers assume that the value of a particular feature is independent of the value of any other feature, given the class variable.
+
+3)	DECISION TREE ALGORITHM
+AIM: SHOW THE IMPLEMENTATION OF DECISION TREE.
+BACKGROUND INFORMATION:
+Decision tree induction is the learning of decision trees from class- labeled training tuples. A decision tree is a ﬂowchart- like tree structure, where each internal node (non-leaf node) denotes a test on an attribute, each branch represents an outcome of the test, and each leaf node (or terminal node) holds a class label. The topmost node in a tree is the root node. Internal nodes are denoted by rectangles, and leaf nodes are denoted by ovals.
+This practical will show the implementation of decision three using package party, rpart&random forest
+Decision Trees with Package party
+This section shows how to build a decision for the iris dataset with the function ctree() in package party. Iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
+
+4)	TIME SERIES ANALYSIS
+AIM: SHOW THE IMPLEMENTATION OF TIME SERIES ANALYSIS.
+BACKGROUND INFORMATION:
+A time series is a sequence of data points, typically consisting of successive measurements made over a time interval. Examples of time series are ocean tides, counts of sunspots. Time series are very frequently plotted via line charts. Time series are used in statistics, signal processing, pattern recognition, econometrics, mathematical finance, weather forecasting, intelligent transport and trajectory forecasting, earthquake prediction, electroencephalography, control engineering, astronomy, communications engineering, and largely in any domain of applied science and engineering which involves temporal measurements.
+Time series analysis comprises methods for analyzing time series data in order to extract meaningful statistics and other characteristics of the data. Time series forecasting is the use of a model to predict future values based on previously observed values. While regression analysis is often employed in such a way as to test theories that the current values of one or more independent time series affect the current value of another time series, this type of analysis of time series is not called "time series analysis", which focuses on comparing values of a single time series or multiple dependent time series at different points in time. Time series analysis can be applied to real-valued, continuous data, discrete numeric data, or discrete symbolic data.
+When information is transferred across time, often to specific points in time, the process is known as forecasting.
+
+5)	CLUSTERING ALGORITHM
+AIM: SHOW THE IMPLEMENTATION OF CLUSTERING ALGORITHM.
+BACKGROUND INFORMATION:
+Cluster analysis or clustering is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar (in some sense or another) to each other than to those in other groups (clusters). It is a main task of exploratory data mining, and a common technique for statistical data analysis
+k-means clustering is a method of vector quantization, originally from signal processing, that is popular for cluster analysis in data mining. k-means clustering aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean, serving as a prototype of the cluster.
+k-medoids clustering is a clustering algorithm related to the k-means algorithm and the medoid shift algorithm. Both the k-means and k-medoids algorithms are partitional (breaking the dataset up into groups) and both attempt to minimize the distance between points labeled to be in a cluster and a point designated as the center of that cluster. In contrast to the k-means algorithm, k-medoids chooses datapoints as centers (medoids or exemplars) and works with an arbitrary matrix of distances between datapoints.
+
+6)	K-NEAREST NEIGHBOR
+AIM: SHOW THE IMPLEMENTATION OF K-NEAREST NEIGHBOR.
+BACKGROUND INFORMATION:
+The k-Nearest Neighbors algorithm (or k-NN for short) is a non-parametric method used for classification and regression. In both cases, the input consists of the k closest training examples in the feature space. The output depends on whether k-NN is used for classification or regression:
+•	In k-NN classification, the output is a class membership. An object is classified by a majority vote of its neighbors, with the object being assigned to the class most common among its k nearest neighbors (k is a positive integer, typically small). If k = 1, then the object is simply assigned to the class of that single nearest neighbor.
+•	In k-NN regression, the output is the property value for the object. This value is the average of the values of its k nearest neighbors.
+k-NN is a type of instance-based learning, or lazy learning, where the function is only approximated locally and all computation is deferred until classification. The k-NN algorithm is among the simplest of all machine learning algorithms.
+Both for classification and regression, it can be useful to assign weight to the contributions of the neighbors, so that the nearer neighbors contribute more to the average than the more distant ones. For example, a common weighting scheme consists in giving each neighbor a weight of 1/d, where d is the distance to the neighbor.
+The neighbors are taken from a set of objects for which the class (for k-NN classification) or the object property value (for k-NN regression) is known. This can be thought of as the training set for the algorithm, though no explicit training step is required.
+A shortcoming of the k-NN algorithm is that it is sensitive to the local structure of the data.
+
+7)	ASSOCIATION ALGORITHM
+AIM: SHOW THE IMPLEMENTATION OF ASSOCIATION ALGORITHM.
+BACKGROUND INFORMATION:
+Association rule learning is a method for discovering interesting relations between variables in large databases. It is intended to identify strong rules discovered in databases using different measures of interestingness.
+Association rules are rules presenting association or correlation between itemsets. An association
+rule is in the form of A ) B, where A and B are two disjoint itemsets, referred to respectively
+as the lhs (left-hand side) and rhs (right-hand side) of the rule. 
+The three most widely-used measures for selecting interesting rules are support, confidence and lift. Support is the percentage of cases in the data that contains both A and B, con_dence is the percentage of cases containing
+A that also contain B, and lift is the ratio of con_dence to the percentage of cases containing B where P(A) is the percentage (or probability) of cases containing A.
+
+1)	Power BI
+AIM:  Import the legacy data from different sources such as (Excel, SqlServer, Oracle etc.) and load in the target system.
+The parts of Power Bl
+• Power Bl consists of a Windows desktop application called Power Bl Desktop, an online Saas (Software as a Service) service called the Power Bl service, and Power Bl Mobile apps for Windows, iOS and Android devices.
+• These three elements - Power Bl Desktop, the Service(SAAS), and mobile apps - are designed to let people create, share, and consume business insights in the way that serves them, or their role, most effectively.
+• A fourth element, Power Bl Report Server, allows you to publish Power Bl reports to an on-premises report server, after creating them in Power Bl Desktop.
+How Power Bl matches your role
+• How you use Power Bl may depend on your role in a project or on a team
+• If you're a developer, you might use Power Bl APls to push data into datasets or to embed dashboards and reports into your own custom applications.
+• Another coworker, in sales, might mainly use her Power Bl phone app to monitor progress on her sales quotas, and to drill into new sales lead details.
+
+The flow of work in Power Bl
+• A common flow of work in Power Bl begins by connecting to data sources and building a report in Power Bl Desktop.
+• You then publish that report from Power Bl Desktop to the Power Bl service, and share it so end users in the service and mobile devices can view and interact with the report
+• This workflow is common, and shows how the three main Power Bl elements complement one another.
+What is Power Bl Report Server?
+• Power Bl Report Server is an on-premises report server with a web portal in which you display and manage reports and KPls.
+• Along with it come the tools to create Power Bl reports, paginated reports, mobile reports, and KPls. Your users can access those reports in different ways: viewing them In a web browser or mobile device, or as an email in their in-box.
+
+Power Bl Products
+Power BI Pro
+• Connect to hundreds of data sources, and visualize all your data with live dashboards and reports. Then share insights across your organization to fuel intelligent action
+Power BI Premium
+• Offers advanced, self-service data preparation that allows every user - from business analyst to data scientist - to accelerate the delivery of insights and collaborate with ease
+Power BI Mobile
+• Stay connected to your data wherever business takes you. Mobile business intelligence is Just a touch away
+Power BI Embedded
+• Embed interactive Power Bl visuals in your applications, websites, or portals to bring world-class analytics directly to your customers
+
+Create interactive reports customized for your business
+• Create stunning reports with interactive data visualizations. Tell your data story using a drag-and-drop canvas and hundreds of modern data visuals from Microsoft and partners - or create your own, using the Power Bl open source custom visuals framework. Design your report with theming, formatting, and layout tools.
+
+Author for everyone, anywhere
+• Get visual analytics to the people who need it. Create mobile-optimized reports for viewers to consume on the go. Publish from Power Bl Desktop to the cloud or on-premises. Embed reports created in power BI Desktop into existing apps or websites.
+
+• Power Bl Report Server is similar to both SQL Server Reporting Services and the Power BI online service, but in different ways
+• Like the Power Bl service, Power Bl Report Server hosts Power Bl reports (.PBIX) and Excel files. Like Reporting Services, Power Bl Report Server is on premises, and hosts paginated reports (.RDL) Report Definition Language.
+• Power Bl Report Server is a superset of Reporting Services: everything you can do In Reporting Services, you can do with Power BI Report Server, along with support for Power BI reports.
